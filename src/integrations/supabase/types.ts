@@ -9,7 +9,155 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      challenges: {
+        Row: {
+          created_at: string
+          description: string
+          difficulty: string
+          duration: string
+          id: string
+          title: string
+          type: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          difficulty: string
+          duration: string
+          id?: string
+          title: string
+          type: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          difficulty?: string
+          duration?: string
+          id?: string
+          title?: string
+          type?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean
+          message: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          id: string
+          updated_at: string
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          id: string
+          updated_at?: string
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          updated_at?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      quran_bookmarks: {
+        Row: {
+          ayah: number
+          created_at: string
+          id: string
+          surah: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          ayah: number
+          created_at?: string
+          id?: string
+          surah: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          ayah?: number
+          created_at?: string
+          id?: string
+          surah?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_challenges: {
+        Row: {
+          challenge_id: string
+          completed: boolean
+          completion_date: string | null
+          id: string
+          last_activity: string
+          progress: number
+          start_date: string
+          user_id: string
+        }
+        Insert: {
+          challenge_id: string
+          completed?: boolean
+          completion_date?: string | null
+          id?: string
+          last_activity?: string
+          progress?: number
+          start_date?: string
+          user_id: string
+        }
+        Update: {
+          challenge_id?: string
+          completed?: boolean
+          completion_date?: string | null
+          id?: string
+          last_activity?: string
+          progress?: number
+          start_date?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_challenges_challenge_id_fkey"
+            columns: ["challenge_id"]
+            isOneToOne: false
+            referencedRelation: "challenges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
